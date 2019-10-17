@@ -1,0 +1,30 @@
+server:
+  port: 3001
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: springcloudtest-zuul
+
+eureka:
+  instance:
+    instance-id: springcloudtest-zuul:3001
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka2001.yz.test:2001/eureka/,http://eureka2002.yz.test:2002/eureka/,http://eureka2003.yz.test:2003/eureka/
+
+
+info:
+  groupId: $project.groupId$
+  artifactId: $project.artifactId$
+  version: $project.version$
+  负责人: 杨泽
+  联系电话: 18401252028
+zuul:
+  ignored-services: "*"
+  routes:
+     studentServer.serviceId: springcloudtest-provider
+     studentServer.path: /studentServer/**
+  #prefix: /yz.test
